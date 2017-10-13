@@ -1,0 +1,586 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- The Basics -->
+	<groupId>com.finallynull</groupId>
+	<artifactId>spring-framework-5</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<dependencies>
+	
+		<!-- javax -->
+		<!-- Java Servlet API -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet-version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- JavaServer Pages(TM) API -->
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>${jsp-version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- //javax -->
+		
+		<!-- Logging -->
+		<!-- The Apache Log4j Implementation -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- The Apache Log4j API -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+		</dependency>
+		<!-- The Apache Log4j SLF4J API binding to Log4j 2 Core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.logging.log4j</groupId>
+					<artifactId>log4j-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- The slf4j API -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j-version}</version>
+		</dependency>
+	    <!-- JCL 1.1.1 implemented over SLF4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j-version}</version>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Log4j implemented over SLF4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<version>${slf4j-version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- //Logging -->
+		
+		<!-- Spring Framework -->
+		<!-- Core Container -->
+		<!-- Core utilities, used by many other Spring modules -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-jcl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Beans support, including Groovy -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Application context runtime, including scheduling and remoting abstractions -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-expression</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Support classes for integrating common third-party libraries into a Spring application context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Spring Context Indexer -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-indexer</artifactId>
+		</dependency>
+		<!-- Spring Expression Language (SpEL) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-expression</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Spring Commons Logging Bridge -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jcl</artifactId>
+		</dependency>
+		<!-- //Core Container -->
+		<!-- AOP and Instrumentation -->
+		<!-- Proxy-based AOP support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- AspectJ based aspects -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.aspectj</groupId>
+					<artifactId>aspectjweaver</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Instrumentation agent for JVM bootstrapping -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-instrument</artifactId>
+		</dependency>
+		<!-- //AOP and Instrumentation -->
+		<!-- Messaging -->
+		<!-- Support for messaging architectures and protocols -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-messaging</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- //Messaging -->
+		<!-- Data Access/Integration -->
+		<!-- JDBC support package, including DataSource setup and JDBC access support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-tx</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Transaction infrastructure, including DAO support and JCA integration -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Object/Relational Mapping, including JPA and Hibernate support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-jdbc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-tx</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Object/XML Mapping -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- JMS support package, including helper classes to send and receive JMS messages -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-messaging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-tx</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- //Data Access/Integration -->
+		<!-- Web -->
+		<!-- Web support packages, including client and web remoting -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- REST Web Services and model-view-controller implementation for web applications -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-expression</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Spring WebFlux -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webflux</artifactId>
+		</dependency>
+		<!-- //Web -->
+		<!-- WebSocket and SockJS implementations, including STOMP support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-web</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Test -->
+		<!-- Support for unit testing and integration testing Spring components -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- //Test -->
+		<!-- //Spring Framework -->
+		
+		<!-- Aspect Oriented Programming -->
+		<!-- AOP Alliance -->
+		<dependency>
+			<groupId>aopalliance</groupId>
+			<artifactId>aopalliance</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<!-- The AspectJ weaver introduces advices to java classes -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj-version}</version>
+		</dependency>
+		<!-- The runtime needed to execute a program using AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj-version}</version>
+		</dependency>
+		<!-- //Aspect Oriented Programming -->
+		
+	</dependencies>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-bom</artifactId>
+				<version>${log4j-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>${spring-framework-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<modules></modules>
+	
+	<properties>
+		<!-- Generic -->
+		<encoding>UTF-8</encoding>
+		<java-version>1.8</java-version>
+		<servlet-version>3.1.0</servlet-version>
+		<jsp-version>2.3.1</jsp-version>
+		<!-- Logging -->
+		<log4j-version>2.9.1</log4j-version>
+		<slf4j-version>1.7.25</slf4j-version>
+		<!-- Spring -->
+		<spring-framework-version>5.0.0.RELEASE</spring-framework-version>
+		<aspectj-version>1.8.11</aspectj-version>
+	</properties>
+	
+	<!-- Build Settings -->
+	<build>
+		<directory>${project.basedir}/target</directory>
+		<outputDirectory>${project.build.directory}/classes</outputDirectory>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<testOutputDirectory>${project.build.directory}/test-classes</testOutputDirectory>
+		<sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+		<scriptSourceDirectory>src/main/scripts</scriptSourceDirectory>
+		<testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>${project.basedir}/src/test/resources</directory>
+			</testResource>
+		</testResources>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<source>${java-version}</source>
+						<target>${java-version}</target>
+						<encoding>${encoding}</encoding>
+						<compilerArgument>-Xlint:all</compilerArgument>
+						<showWarnings>true</showWarnings>
+						<showDeprecation>true</showDeprecation>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.1.0</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+						<warName>${project.name}</warName>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-ear-plugin</artifactId>
+					<version>2.10.1</version>
+					<configuration>
+						<modules>
+							<webModule>
+								<groupId>com.finallynull</groupId>
+								<artifactId>spring-framework-5</artifactId>
+								<contextRoot>/</contextRoot>
+							</webModule>
+						</modules>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<reporting>
+		<outputDirectory>${project.build.directory}/site</outputDirectory>
+	</reporting>
+	
+	<!-- More Project Information -->
+	<name>Spring Framework 5</name>
+	<description></description>
+	<url></url>
+	<inceptionYear></inceptionYear>
+	<licenses></licenses>
+	<organization></organization>
+	<developers></developers>
+	<contributors></contributors>
+	
+	<!-- Environment Settings -->
+	<issueManagement></issueManagement>
+	<ciManagement></ciManagement>
+	<mailingLists></mailingLists>
+	<scm></scm>
+	<prerequisites></prerequisites>
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>http://repo.maven.apache.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>http://repo.maven.apache.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
+	<distributionManagement></distributionManagement>
+	<profiles></profiles>
+	
+</project>
